@@ -1,0 +1,18 @@
+body{
+    background-color: rgb(39, 206, 218);
+}
+#zerothBlock, #firstBlock, #secondBlock, #thirdBlock, #fourthBlock, #fifthBlock, #sixthBlock, #seventhBlock, #eighthBlock{
+    background-color: coral;
+    text-align: center;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    vertical-align: top;
+}
+.makeXBigger{
+    font-size: 150px;
+}
+.makeOBigger{
+    font-size: 130px;
+    padding-top: 10px;
+}
