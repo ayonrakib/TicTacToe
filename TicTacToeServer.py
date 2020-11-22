@@ -27,9 +27,9 @@ def footerHTML():
     """
 
 
-def bodyHTML(bodyBlock):
+def bodyHTML(className, bodyBlock):
     return f"""
-    <body>
+    <body class = {className}>
         {bodyBlock}
     </body>
     """
@@ -59,7 +59,12 @@ def logIn():
         }
     </style>
     """
-    return headerHTML(headBlock) + bodyHTML("Login") + footerHTML()
+    bodyBlock = """
+        
+            <img class = "mb-4" src = "D:/Python Programming/TicTacToe/loginPic.png" alt width = "80" hieght = "80">
+        
+    """
+    return headerHTML(headBlock) + bodyHTML("text-center", bodyBlock) + footerHTML()
 
 
 if __name__ == "__main__":
