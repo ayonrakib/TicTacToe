@@ -1,5 +1,5 @@
 import peewee
-from DatabaseConnection import DatabaseConnection
+from templates.library.DatabaseConnection import DatabaseConnection
 
 class User(peewee.Model):
     id = peewee.AutoField()

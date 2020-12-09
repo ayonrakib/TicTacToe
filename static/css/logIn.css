@@ -1,0 +1,32 @@
+.font-weight-normal {
+  font-weight: 400!important;
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+body{
+  padding-top: 150px;
+  background-color: lightseagreen;
+}
+.text-center {
+  text-align: center!important;
+}
+.form-signin .checkbox {
+  margin-top: 20px;
+  font-weight: 400;
+}
+a{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  color: blue;
+  margin-top: 10px;
+}
+a:hover{
+  color: darkgreen;
+}
+.btn{
+  margin-top: 20px;
+}

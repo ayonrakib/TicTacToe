@@ -1,8 +1,8 @@
 import mysql.connector as mysql
 import json, hashlib, binascii, peewee
-from User import User
-from DatabaseConnection import DatabaseConnection
-
+from templates.model.User import User
+from templates.library.DatabaseConnection import DatabaseConnection
+import templates
 
 class UserController():
     # def __init__(self):
@@ -26,6 +26,18 @@ class UserController():
             if User.get(User.email == email) and User.get(User.password == password):
                 return True
         except:
+            return False
+
+# user jei data pathay sob string, so email str kina check dorkar nai.
+    def findUserByEmail(self, email):
+        # if not isinstance(email, str):
+        #     raise Exception("Email is not a string")
+# bivinno exception khaite paare: db down, busy, user paay nai, fail korse db te.
+# user related kaaj gula show korbo, baki sob log korbo.
+        try: 
+            if User.get(User.email == email):
+                return True
+        except templates.User.UserDoesNotExist:
             return False
 
 
