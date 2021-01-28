@@ -1,16 +1,21 @@
 import mysql.connector as mysql
 import json, hashlib, binascii, peewee
-from templates.model.User import User
-from templates.library.DatabaseConnection import DatabaseConnection
-import templates
+from model.User import User
+from library.DatabaseConnection import DatabaseConnection
+import peewee, os
+
 
 class UserController():
     # def __init__(self):
     #     self.databaseConnection = DatabaseConnection.getConnection()
+    def getUserSalt(self, email):
+        return User.get(User.email == email).getSalt()
 
-    def hashPassword(self, password):
+
+    def hashPassword(self, password, salt):
         if not isinstance(password, str):
             raise Exception("Password should be a string")
+        password = salt + password
         encodedPassword = hashlib.sha512(password.encode('utf-16',errors='strict'))
         hashedPassword = encodedPassword.hexdigest()
         return hashedPassword
@@ -21,7 +26,8 @@ class UserController():
             raise Exception("email has to be string")
         if not isinstance(password, str):
             raise Exception("password has to be str.")
-        password = self.hashPassword(password)
+        userSalt = self.getUserSalt(email)
+        password = self.hashPassword(password, userSalt)
         try:
             if User.get(User.email == email) and User.get(User.password == password):
                 return True
@@ -36,14 +42,15 @@ class UserController():
 # user related kaaj gula show korbo, baki sob log korbo.
         try: 
             if User.get(User.email == email):
-                return True
-        except templates.User.UserDoesNotExist:
-            return False
+                return "User found"
+        except peewee.DoesNotExist:
+            return "User Not found"
 
 
-    def createFromRegistrationForm(self, email, password):
-        hashedPassword = self.hashPassword(password)
-        user = User.create(email = email, password = hashedPassword)
+    def createUserFromRegistrationForm(self, email, password):
+        salt = str(os.urandom(20))
+        currentSession = str(os.urandom(20))
+        user = User.create(email = email, password = self.hashPassword(password, salt), salt = salt, currentSession = currentSession)
         return user
 
 
@@ -52,10 +59,10 @@ class UserController():
 # databaseConnection.create_tables([User])
 
 # create 2 users
-#   user1 = User(email = "ayon@gmail.com", password = user.hashPassword("password"))
-#   print(user1.save())
-#   user2 = User(email = "golam@gmail.com", password = user.hashPassword("password"))
-#   print(user2.save())
+# user1 = User(email = "ayon@gmail.com", password = userController.hashPassword("password"))
+# print(user1.save())
+# user2 = User(email = "golam@gmail.com", password = userController.hashPassword("password"))
+# print(user2.save())
 
 # emails are unique, so this user will throw errors
 #   user3 = User(email = "golam@gmail.com", password = user.hashPassword("password"))
@@ -70,3 +77,7 @@ class UserController():
 #   user1 = User.get(User.id == 1)
 #   user1.password = user.hashPassword("password")
 #   print(user1.save())
+
+# update current session
+#   user1 = User.get(User.id == 1)
+#   user1.currentSession = ""

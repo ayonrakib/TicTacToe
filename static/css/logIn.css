@@ -30,3 +30,29 @@ a:hover{
 .btn{
   margin-top: 20px;
 }
+.emailFoundError{
+  color: blue;
+  text-align: center!important;
+}
+.authenticateUserError{
+  color: darkred;
+  text-align: center!important;
+}
+#mark{
+  width: 100px;
+  height: 100px;
+  background-color: darkgrey;
+  font-size: 60px;
+  margin-left: 20px;
+}
+.logout{
+  display: inline-block;
+  padding:5px 5px;
+  background-color:rosybrown;
+  text-decoration: none;
+  color: black;
+}
+.logoutBlock{
+  display: block;
+  margin-bottom: 10px;
+}

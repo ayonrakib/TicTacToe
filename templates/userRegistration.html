@@ -2,10 +2,21 @@
 {% include 'bodyHeader.html' %}
 {% include 'loginFormHeader.html' %}
 {% include 'pageHeader.html' %}
-{% include 'firstNameBlock.html' %}
-{% include 'lastNameBlock.html' %}
-{% include 'emailBlock.html' %}
-{% include 'passwordBlock.html' %}
-{% include 'button.html' %}
-{% include 'loginFormFooter.html' %}
-{% include 'bodyFooter.html' %}
+{% if  'User Found' in userFound %}
+    {% include 'emailFoundError.html' %}
+    {% include 'firstNameBlock.html' %}
+    {% include 'lastNameBlock.html' %}
+    {% include 'emailBlock.html' %}
+    {% include 'passwordBlock.html' %}
+    {% include 'button.html' %}
+    {% include 'loginFormFooter.html' %}
+    {% include 'bodyFooter.html' %}
+{% elif '' in userFound %}
+    {% include 'firstNameBlock.html' %}
+    {% include 'lastNameBlock.html' %}
+    {% include 'emailBlock.html' %}
+    {% include 'passwordBlock.html' %}
+    {% include 'button.html' %}
+    {% include 'loginFormFooter.html' %}
+    {% include 'bodyFooter.html' %}
+{% endif %}

@@ -2,10 +2,20 @@
 {% include 'bodyHeader.html' %}
 {% include 'loginFormHeader.html' %}
 {% include 'pageHeader.html' %}
-{% include 'emailBlock.html' %}
-{% include 'passwordBlock.html' %}
-{% include 'rememberMeCheckBox.html' %}
-{% include 'button.html' %}
-{% include 'newAccountDirectLink.html' %}
-{% include 'loginFormFooter.html' %}
-{% include 'bodyFooter.html' %}
+{% if  'Failed to login!' in errorMessage %}
+    {% include 'authenticateUserError.html' %}
+    {% include 'emailBlock.html' %}
+    {% include 'passwordBlock.html' %}
+    {% include 'button.html' %}
+    {% include 'newAccountDirectLink.html' %}
+    {% include 'loginFormFooter.html' %}
+    {% include 'newAccountDirectLink.html' %}
+    {% include 'bodyFooter.html' %}
+{% elif '' in errorMessage %}
+    {% include 'emailBlock.html' %}
+    {% include 'passwordBlock.html' %}
+    {% include 'button.html' %}
+    {% include 'newAccountDirectLink.html' %}
+    {% include 'loginFormFooter.html' %}
+    {% include 'bodyFooter.html' %}
+{% endif %}

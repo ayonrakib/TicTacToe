@@ -1,10 +1,12 @@
 import peewee
-from templates.library.DatabaseConnection import DatabaseConnection
+from library.DatabaseConnection import DatabaseConnection
 
 class User(peewee.Model):
     id = peewee.AutoField()
     email = peewee.CharField(unique=True)
     password = peewee.CharField()
+    currentSession = peewee.CharField()
+    salt = peewee.CharField()
     class Meta:
         database = DatabaseConnection.getConnection()
 
@@ -38,3 +40,15 @@ class User(peewee.Model):
 
     def setEmail(self, email):
         self.email = self.email
+
+    
+    def getCurrentSession(self):
+        return self.getCurrentSession
+
+
+    def setCurrentSession(self, currentSession):
+        self.currentSession = currentSession
+
+
+    def getSalt(self):
+        return self.salt
